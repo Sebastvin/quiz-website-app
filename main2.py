@@ -1,7 +1,6 @@
 from dotenv import load_dotenv, find_dotenv
 import os
 import pprint
-from datetime import datetime as dt
 from pymongo import MongoClient
 
 load_dotenv(find_dotenv())

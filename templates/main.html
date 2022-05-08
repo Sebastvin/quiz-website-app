@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="scripts/questions_complete.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+
+    <div class="row clearfix">
+        <h1>Quiz</h1>
+    </div>
+    <div class="col-md-1 column">
+    </div>
+    <div class="col-md-10 column">
+        <p id="numberOfQuestion" class="lead">Question(1-10)</p>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" >
+            </div>
+        </div>
+
+    <span id="question"></span> <span id="result"></span>
+    <div id="buts">
+      <button type="button" id="a"></button>
+      <button type="button" id="b"></button>
+      <button type="button" id="c"></button>
+      <button type="button" id="d"></button>
+    </div>
+    <button type="button" id="next">Next</button>
+
+    </div>
+</div>
+<h1 id="cc"></h1>
+<script>
+
+
+let x = [{ question: "How old is LJ?", answers: { a: "27", b: "25", c: "26", d: "24", }, correctAnswer: "b", }, { question: "What is her favorite game?", answers: { a: "ML", b: "COD", c: "DOTA 2", d: "LOL", }, correctAnswer: "b", }, { question: "Where does LJ live?", answers: { a: "Pasig city", b: "Quezon city", c: "Rizal", d: "Sta Mesa", }, correctAnswer: "a", } ];
+let myQuestions = JSON.parse('{{data | tojson | safe}}');
+let letters = ['a', 'b' ,'c' ,'d']
+
+let questionIndex = 0;
+
+function renderQuestion() {
+  if (questionIndex >= myQuestions.length) return;
+
+  let show = document.getElementById('question');
+  let q = myQuestions[questionIndex][0];
+  show.innerHTML = q;
+
+  for (var i=0; i<letters.length; i++) {
+    const but = document.getElementById(letters[i]);
+    but.innerHTML = myQuestions[questionIndex][i+1];
+    but.dataset.correct = myQuestions[questionIndex][5].toLowerCase() === letters[i];
+    }
+
+
+
+<!--  Object.entries(q.answers).forEach(([letter,text]) => {-->
+<!--    const but = document.getElementById(letter);-->
+<!--    but.innerHTML = text;-->
+<!--    but.dataset.correct = q.correctAnswer.toLowerCase() === letter;-->
+<!--  })-->
+  questionIndex++;
+}
+
+renderQuestion()
+
+document.getElementById("buts").addEventListener("click", function(e) {
+  const tgt = e.target;
+  if (tgt.type && tgt.type === "button") {
+    document.getElementById("result").innerText = tgt.dataset.correct === "true" ? "Correct" : "Incorrect"
+  }
+})
+
+document.getElementById("next").addEventListener("click", renderQuestion)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--var counter = 1;-->
+
+<!--document.getElementById('next').addEventListener("click", function() {-->
+<!--   document.getElementById('cc').innerHTML= "xddd";-->
+<!--});-->
+
+<!--function change()-->
+<!--{-->
+
+
+
+<!--    var data_from_python = JSON.parse('{{data | tojson | safe}}');-->
+<!--    var numberOfQuestion = document.getElementById("numberOfQuestion");-->
+
+<!--    var question = document.getElementById("question");-->
+<!--    var a = document.getElementById("optionA");-->
+<!--    var b = document.getElementById("optionB");-->
+<!--    var c = document.getElementById("optionC");-->
+<!--    var d = document.getElementById("optionD");-->
+
+
+<!--    numberOfQuestion.innerHTML = "Question" + "(" + counter +"-10)";-->
+
+<!--    question.innerHTML = data_from_python[counter][0];-->
+<!--    a.innerHTML = data_from_python[counter][1];-->
+<!--    b.innerHTML = data_from_python[counter][2];-->
+<!--    c.innerHTML = data_from_python[counter][3];-->
+<!--    d.innerHTML = data_from_python[counter][4];-->
+
+<!--    counter++;-->
+
+<!--}-->
+
+<!--function onlyOne(checkbox) {-->
+<!--    var checkboxes = document.getElementsByName('check')-->
+<!--    checkboxes.forEach((item) => {-->
+<!--        if (item !== checkbox) item.checked = false-->
+<!--    })-->
+<!--}-->
+
+</script>
+
+</body>
+</html>
