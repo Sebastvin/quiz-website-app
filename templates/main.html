@@ -37,11 +37,8 @@
     </div>
 </div>
 <h1 id="score"></h1>
+<h1 id="end">----</h1>
 <script>
-
-
-
-let x = [{ question: "How old is LJ?", answers: { a: "27", b: "25", c: "26", d: "24", }, correctAnswer: "b", }, { question: "What is her favorite game?", answers: { a: "ML", b: "COD", c: "DOTA 2", d: "LOL", }, correctAnswer: "b", }, { question: "Where does LJ live?", answers: { a: "Pasig city", b: "Quezon city", c: "Rizal", d: "Sta Mesa", }, correctAnswer: "a", } ];
 let myQuestions = JSON.parse('{{data | tojson | safe}}');
 let letters = ['a', 'b' ,'c' ,'d']
 
@@ -50,23 +47,21 @@ let result = 0;
 
 
 function renderQuestion() {
-  if (questionIndex >= myQuestions.length) return;
 
   let show = document.getElementById('question');
-  let q = myQuestions[questionIndex][0];
-  show.innerHTML = q;
+  show.innerHTML = myQuestions[questionIndex][0];
 
   for (var i=0; i<letters.length; i++) {
     const but = document.getElementById(letters[i]);
     but.innerHTML = myQuestions[questionIndex][i+1];
     }
 
+  var numQuestion = questionIndex +1;
+  document.getElementById("numberOfQuestion").innerText = "Question(" + numQuestion +"-10)";
   document.getElementById("score").innerText = result;
   let tmp = document.getElementById("result").innerText = myQuestions[questionIndex][5].toLowerCase();
+
 }
-
-
-
 
 document.getElementById("buts").addEventListener("click", function(e)
 {
@@ -92,7 +87,15 @@ renderQuestion();
 
 document.getElementById("next").addEventListener("click", function(e)
 {
+  if (questionIndex <= myQuestions.length -2)
+  {
     questionIndex++;
+  }
+  else
+  {
+    document.getElementById('end').innerText = "KONIEC";
+  }
+
     document.getElementById('a').style.backgroundColor = 'white';
     document.getElementById('b').style.backgroundColor = 'white';
     document.getElementById('c').style.backgroundColor = 'white';
