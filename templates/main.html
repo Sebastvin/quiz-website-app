@@ -48,6 +48,7 @@ let letters = ['a', 'b' ,'c' ,'d']
 let questionIndex = 0;
 let result = 0;
 
+
 function renderQuestion() {
   if (questionIndex >= myQuestions.length) return;
 
@@ -58,115 +59,52 @@ function renderQuestion() {
   for (var i=0; i<letters.length; i++) {
     const but = document.getElementById(letters[i]);
     but.innerHTML = myQuestions[questionIndex][i+1];
-    but.dataset.correct = myQuestions[questionIndex][5].toLowerCase() === letters[i];
     }
 
-
-
-<!--  Object.entries(q.answers).forEach(([letter,text]) => {-->
-<!--    const but = document.getElementById(letter);-->
-<!--    but.innerHTML = text;-->
-<!--    but.dataset.correct = q.correctAnswer.toLowerCase() === letter;-->
-<!--  })-->
-  questionIndex++;
+  document.getElementById("score").innerText = result;
+  let tmp = document.getElementById("result").innerText = myQuestions[questionIndex][5].toLowerCase();
 }
 
-renderQuestion()
 
 
 
-document.getElementById("next").addEventListener("click", function(e) {
-  const tgt = e.target;
+document.getElementById("buts").addEventListener("click", function(e)
+{
+    const tgt = e.target;
 
-  if (tgt.dataset.correct && tgt.dataset.correct === "true")
-  {
-    result++;
-  }
+    var answer = tgt.id;
+    var clickedButton = document.getElementById(answer.toString());
+    var lol = document.getElementById("result").innerText = myQuestions[questionIndex][5].toLowerCase();;
 
-  if (tgt.type && tgt.type === "button") {
-    document.getElementById("result").innerText = tgt.dataset.correct === "true" ? "Correct" : "Incorrect"
-    document.getElementById("score").innerText = result;
-  }
+
+    if (answer.toString() === lol)
+    {       result++;
+            clickedButton.style.backgroundColor = 'green';
+    }
+    else
+    {
+        clickedButton.style.backgroundColor = 'red';
+    }
 })
 
-document.getElementById("buts").addEventListener("click", function(e) {
-  const tgt = e.target;
-  if (tgt.type && tgt.type === "button") {
-    document.getElementById("result").innerText = tgt.dataset.correct === "true" ? "Correct" : "Incorrect"
-  }
-})
-
-document.getElementById("next").addEventListener("click", renderQuestion)
+renderQuestion();
 
 
+document.getElementById("next").addEventListener("click", function(e)
+{
+    questionIndex++;
+    document.getElementById('a').style.backgroundColor = 'white';
+    document.getElementById('b').style.backgroundColor = 'white';
+    document.getElementById('c').style.backgroundColor = 'white';
+    document.getElementById('d').style.backgroundColor = 'white';
+    var tmp = document.getElementById("result").innerText = myQuestions[questionIndex][5].toLowerCase();
 
-
-
-
-
-
+    renderQuestion();
+});
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--var counter = 1;-->
-
-<!--document.getElementById('next').addEventListener("click", function() {-->
-<!--   document.getElementById('cc').innerHTML= "xddd";-->
-<!--});-->
-
-<!--function change()-->
-<!--{-->
-
-
-
-<!--    var data_from_python = JSON.parse('{{data | tojson | safe}}');-->
-<!--    var numberOfQuestion = document.getElementById("numberOfQuestion");-->
-
-<!--    var question = document.getElementById("question");-->
-<!--    var a = document.getElementById("optionA");-->
-<!--    var b = document.getElementById("optionB");-->
-<!--    var c = document.getElementById("optionC");-->
-<!--    var d = document.getElementById("optionD");-->
-
-
-<!--    numberOfQuestion.innerHTML = "Question" + "(" + counter +"-10)";-->
-
-<!--    question.innerHTML = data_from_python[counter][0];-->
-<!--    a.innerHTML = data_from_python[counter][1];-->
-<!--    b.innerHTML = data_from_python[counter][2];-->
-<!--    c.innerHTML = data_from_python[counter][3];-->
-<!--    d.innerHTML = data_from_python[counter][4];-->
-
-<!--    counter++;-->
-
-<!--}-->
-
-<!--function onlyOne(checkbox) {-->
-<!--    var checkboxes = document.getElementsByName('check')-->
-<!--    checkboxes.forEach((item) => {-->
-<!--        if (item !== checkbox) item.checked = false-->
-<!--    })-->
-<!--}-->
 
 </script>
 
