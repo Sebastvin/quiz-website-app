@@ -37,7 +37,15 @@
     </div>
 </div>
 <h1 id="score"></h1>
-<h1 id="end">----</h1>
+<h1 id="end"></h1>
+
+<button onclick="location.href='/'" type="button" id="menu" hidden="hidden">Go to menu</button>
+
+
+
+<button onclick="window.location.reload();" type="button" id="reset" hidden="hidden">Play again</button>
+
+
 <script>
 let myQuestions = JSON.parse('{{data | tojson | safe}}');
 let letters = ['a', 'b' ,'c' ,'d']
@@ -73,13 +81,20 @@ document.getElementById("buts").addEventListener("click", function(e)
 
 
     if (answer.toString() === lol)
-    {       result++;
-            clickedButton.style.backgroundColor = 'green';
+    {
+        result++;
+        clickedButton.style.backgroundColor = 'green';
     }
     else
     {
         clickedButton.style.backgroundColor = 'red';
     }
+
+
+    document.getElementById('a').disabled = true;
+    document.getElementById('b').disabled = true;
+    document.getElementById('c').disabled = true;
+    document.getElementById('d').disabled = true;
 })
 
 renderQuestion();
@@ -93,8 +108,19 @@ document.getElementById("next").addEventListener("click", function(e)
   }
   else
   {
-    document.getElementById('end').innerText = "KONIEC";
+
+    document.getElementById('end').innerText = "Well done! Your score is " + result +" of 10";
+    document.getElementById('next').hidden = true;
+    document.getElementById('reset').hidden = false;
+    document.getElementById('menu').hidden = false;
+
+    xhr.open('POST', URL);
   }
+
+    document.getElementById('a').disabled = false;
+    document.getElementById('b').disabled = false;
+    document.getElementById('c').disabled = false;
+    document.getElementById('d').disabled = false;
 
     document.getElementById('a').style.backgroundColor = 'white';
     document.getElementById('b').style.backgroundColor = 'white';
@@ -104,11 +130,6 @@ document.getElementById("next").addEventListener("click", function(e)
 
     renderQuestion();
 });
-
-
-
-
-
 </script>
 
 </body>

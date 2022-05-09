@@ -3,9 +3,6 @@ import main
 
 app = Flask(__name__)
 
-data = list(main.format_questions(main.generate_questions(10)))
-
-
 
 @app.route("/")
 def main_page():
@@ -14,11 +11,10 @@ def main_page():
 
 @app.route("/quiz", methods=['POST'])
 def some():
+    data = list(main.format_questions(main.generate_questions(10)))
     if request.method == 'POST':
         return render_template("main.html", data=data)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
