@@ -2,41 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Document</title>
-    <script src="scripts/questions_complete.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
 
 
+
+
 <div class="container">
-
-    <div class="row clearfix">
-        <h1>Quiz</h1>
-    </div>
-    <div class="col-md-1 column">
-    </div>
-    <div class="col-md-10 column">
-        <p id="numberOfQuestion" class="lead">Question(1-10)</p>
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" >
+    <div class="inside">
+            <div class="row clearfix">
+                <h1  class="lead">Quiz</h1>
             </div>
-        </div>
 
-    <span id="question"></span> <span id="result"></span>
-    <div id="buts">
-      <button type="button" id="a"></button>
-      <button type="button" id="b"></button>
-      <button type="button" id="c"></button>
-      <button type="button" id="d"></button>
-    </div>
-    <button type="button" id="next">Next</button>
+            <div>
+                <h4 id="numberOfQuestion" class="lead">Question 1 of 10</h4>
 
+                <div class="quest">
+                    <span id="question"></span> <span id="result"></span>
+                </div>
+            <div id="buts" class="buttons">
+                <ul>
+
+                     <li><button class="button-quiz" role="button" type="button" id="a"></button></li>
+
+                     <li><button class="button-quiz" role="button"type="button" id="b"></button></li>
+
+                     <li><button class="button-quiz" role="button"type="button" id="c"></button></li>
+
+                     <li><button class="button-quiz" role="button" type="button" id="d"></button></li>
+
+                </ul>
+            </div>
+            <button  style="width:100%;" class="button-quiz" role="button" type="button" id="next">Next</button>
     </div>
 </div>
-<h1 id="score"></h1>
+
+
 <h1 id="end"></h1>
 
 <button onclick="location.href='/'" type="button" id="menu" hidden="hidden">Go to menu</button>
@@ -44,6 +48,7 @@
 
 
 <button onclick="window.location.reload();" type="button" id="reset" hidden="hidden">Play again</button>
+</div>
 
 
 <script>
@@ -65,8 +70,7 @@ function renderQuestion() {
     }
 
   var numQuestion = questionIndex +1;
-  document.getElementById("numberOfQuestion").innerText = "Question(" + numQuestion +"-10)";
-  document.getElementById("score").innerText = result;
+  document.getElementById("numberOfQuestion").innerText = numQuestion + " of 10";
   let tmp = document.getElementById("result").innerText = myQuestions[questionIndex][5].toLowerCase();
 
 }
