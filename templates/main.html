@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <script src="static/scripts/questions_complete.js"></script>
 </head>
 <body>
 
 
 
-
+<script>renderQuestion();</script>
 <div class="container">
     <div class="inside">
             <div class="row clearfix">
@@ -23,32 +24,34 @@
                 <div class="quest">
                     <span id="question"></span> <span id="result"></span>
                 </div>
-            <div id="buts" class="buttons">
-                <ul>
+                <div id="buts" class="buttons">
+                    <ul>
 
-                     <li><button class="button-quiz" role="button" type="button" id="a"></button></li>
+                         <li><button class="button-quiz" role="button" type="button" id="a"></button></li>
 
-                     <li><button class="button-quiz" role="button"type="button" id="b"></button></li>
+                         <li><button class="button-quiz" role="button"type="button" id="b"></button></li>
 
-                     <li><button class="button-quiz" role="button"type="button" id="c"></button></li>
+                         <li><button class="button-quiz" role="button"type="button" id="c"></button></li>
 
-                     <li><button class="button-quiz" role="button" type="button" id="d"></button></li>
+                         <li><button class="button-quiz" role="button" type="button" id="d"></button></li>
 
-                </ul>
-            </div>
+                    </ul>
+                </div>
             <button  style="width:100%;" class="button-quiz" role="button" type="button" id="next">Next</button>
+            </div>
     </div>
+    <div class="endgame">
+    <h1 id="end"></h1>
+
+    <button onclick="location.href='/'" class="button-quiz" type="button" id="menu" hidden="hidden">Go to menu</button>
+
+
+
+    <button onclick="window.location.reload();" class="button-quiz" type="button" id="reset" hidden="hidden">Play again</button>
+</div>
 </div>
 
 
-<h1 id="end"></h1>
-
-<button onclick="location.href='/'" type="button" id="menu" hidden="hidden">Go to menu</button>
-
-
-
-<button onclick="window.location.reload();" type="button" id="reset" hidden="hidden">Play again</button>
-</div>
 
 
 <script>
@@ -112,13 +115,18 @@ document.getElementById("next").addEventListener("click", function(e)
   }
   else
   {
+    const boxes = document.getElementsByClassName('inside');
+    for (const box of boxes)
+    {
+        box.style.display = 'none';
+        box.style.visibility = 'hidden';
+    }
 
     document.getElementById('end').innerText = "Well done! Your score is " + result +" of 10";
     document.getElementById('next').hidden = true;
     document.getElementById('reset').hidden = false;
     document.getElementById('menu').hidden = false;
 
-    xhr.open('POST', URL);
   }
 
     document.getElementById('a').disabled = false;

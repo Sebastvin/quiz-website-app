@@ -2,9 +2,15 @@ body {
     font-family: Inter,sans-serif;
 }
 
+.endgame {
+    text-align: center;
+    margin-top: 160px;
+    width: 100%;
+}
+
 .container {
   position: fixed;
-  height: 550px;
+  height: 470px;
   width: 700px;
   top: 20%;
   left: 40%;
@@ -49,7 +55,6 @@ li {
   box-sizing: border-box;
   color: #000;
   cursor: pointer;
-  display: inline-flex;
   fill: #000;
   font-family: Inter,sans-serif;
   font-size: 16px;
