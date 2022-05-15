@@ -10,10 +10,13 @@ def main_page():
 
 
 @app.route("/quiz", methods=['POST'])
-def some():
-    data = list(main.format_questions(main.generate_questions(10)))
+def quiz():
+    diff = list(main.format_questions(main.generate_questions(10, "different")))
+    book = list(main.format_questions(main.generate_questions(10, "books")))
+    print(diff)
+    print(book)
     if request.method == 'POST':
-        return render_template("main.html", data=data)
+        return render_template("main.html", data=book)
 
 
 if __name__ == "__main__":

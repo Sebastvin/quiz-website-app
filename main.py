@@ -2,6 +2,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import pprint
 from pymongo import MongoClient
+from converter import convert_json_data
 
 load_dotenv(find_dotenv())
 
@@ -14,23 +15,35 @@ client = MongoClient(connection_string)
 printer = pprint.PrettyPrinter()
 
 quiz_db = client.quiz
-quiz_collections = quiz_db.questions
+quiz_different = quiz_db.questions
 collections = quiz_db.list_collection_names()
 
 
+def get_category(category):
+    if "different" == category:
+        return quiz_db.questions
+
+    if "video_games" == category:
+        return quiz_db.video_games
+
+    if "books" == category:
+        return quiz_db.books
+
+
 def count_elements():
-    return quiz_collections.count_documents(filter={})
+    return quiz_different.count_documents(filter={})
 
 
 def project_columns():
     columns = {"_id": 0, "question": 1, "A": 2, "B": 3, "C": 4, "D": 5, "answer": 6}
-    people = quiz_collections.find({}, columns)
+    people = quiz_different.find({}, columns)
     for person in people:
         print(list(person.values()))
 
 
-def generate_questions(number_questions):
-    return list(quiz_collections.aggregate([{"$sample": {"size": number_questions}}]))
+def generate_questions(number_questions, category):
+    data = get_category(category)
+    return list(data.aggregate([{"$sample": {"size": number_questions}}]))
 
 
 def format_questions(data):
@@ -49,9 +62,51 @@ def format_questions(data):
     return zip(question, type_a, type_b, type_c, type_d, answer)
 
 
+def create_documents(docs, category):
+    tmp = get_category(category)
+    tmp.insert_many(docs)
+
+
+def delete_duplicates(category):
+    coll = get_category(category)
+    cursor = coll.aggregate(
+        [
+            {"$group":
+                {
+                    "_id": "$question",
+                    "unique_ids": {"$addToSet": "$_id"},
+                    "count": {"$sum": 1}
+                }
+            },
+            {"$match":
+                 {"count": {"$gte": 2}}
+             }
+        ]
+    )
+
+    response = []
+    for doc in cursor:
+        response.append(doc["unique_ids"][0])
+
+    coll.delete_many({"_id": {"$in": response}})
+
+
+def delete_all(category):
+    data = get_category(category)
+
+    # person_collection.delete_one({"_id": _id})
+    data.delete_many({})
+
+
 if __name__ == "__main__":
-    x = generate_questions(2)
+    # x = generate_questions(2)
+    # printer.pprint(x)
+    # print(list(format_questions(x)))
 
-    printer.pprint(x)
+    docs = convert_json_data("books2.json")
 
-    print(list(format_questions(x)))
+    # create_documents(docs, "books")
+    # delete_duplicates("books")
+
+
+    # delete_all("books")
