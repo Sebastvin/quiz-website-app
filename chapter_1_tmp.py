@@ -128,7 +128,7 @@ def delete_doc_by_id(person_id):
     from bson.objectid import ObjectId
     _id = ObjectId(person_id)
     person_collection.delete_one({"_id": _id})
-    # person_collection.delete_many({})
+    person_collection.delete_many({})
 
 
 # --------------------------------------------------

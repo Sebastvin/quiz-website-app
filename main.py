@@ -2,7 +2,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import pprint
 from pymongo import MongoClient
-from converter import convert_json_data
+from converter import convert_json_data, clean_data_json
 
 load_dotenv(find_dotenv())
 
@@ -15,8 +15,8 @@ client = MongoClient(connection_string)
 printer = pprint.PrettyPrinter()
 
 quiz_db = client.quiz
-quiz_different = quiz_db.questions
 collections = quiz_db.list_collection_names()
+
 
 
 def get_category(category):
@@ -28,6 +28,21 @@ def get_category(category):
 
     if "books" == category:
         return quiz_db.books
+
+    if "sports" == category:
+        return quiz_db.sports
+
+    if "music" == category:
+        return quiz_db.music
+
+    if "math" == category:
+        return quiz_db.math
+
+    if "geography" == category:
+        return quiz_db.geography
+
+    if "computer_science" == category:
+        return quiz_db.computer_science
 
 
 def count_elements():
@@ -99,14 +114,16 @@ def delete_all(category):
 
 
 if __name__ == "__main__":
+    pass
     # x = generate_questions(2)
     # printer.pprint(x)
     # print(list(format_questions(x)))
 
-    docs = convert_json_data("books2.json")
-
+    # docs = convert_json_data("data.json")
     # create_documents(docs, "books")
     # delete_duplicates("books")
 
 
-    # delete_all("books")
+
+
+    # delete_all("video_games")

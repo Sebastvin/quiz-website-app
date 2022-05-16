@@ -11,12 +11,11 @@ def main_page():
 
 @app.route("/quiz", methods=['POST'])
 def quiz():
-    diff = list(main.format_questions(main.generate_questions(10, "different")))
-    book = list(main.format_questions(main.generate_questions(10, "books")))
-    print(diff)
-    print(book)
+    category = request.form["quiz_button"]
+    print(category)
+    data = list(main.format_questions(main.generate_questions(10, category)))
     if request.method == 'POST':
-        return render_template("main.html", data=book)
+        return render_template("main.html", data=data)
 
 
 if __name__ == "__main__":

@@ -26,9 +26,9 @@ def randomize_questions_and_answers(questions, right_answer):
 
 def clean_data_json(data):
     for value in data:
-        value['question'] = value['question'].replace("&quot;", "").replace("&#039;", "")
-        value['correct_answer'] = value['correct_answer'].replace("&quot;", "").replace("&#039;", "")
-        value['incorrect_answers'] = [x.replace("&quot;", "").replace("&#039;", "") for x in
+        value['question'] = value['question'].replace("&quot;", "").replace("&#039;", "").replace("&eacute;", "")
+        value['correct_answer'] = value['correct_answer'].replace("&quot;", "").replace("&#039;", "").replace("&eacute;", "")
+        value['incorrect_answers'] = [x.replace("&quot;", "").replace("&#039;", "").replace("&eacute;", "") for x in
                                       value['incorrect_answers']]
         value['incorrect_answers'].append(value['correct_answer'])
 
