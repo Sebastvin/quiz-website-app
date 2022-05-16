@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-    <center><h1>FUCKING PROJECT</h1></center>
-    <form action="quiz" method="post">
-            <ul>
-                <li><center><button class="button-quiz" name="quiz_button" type="submit" value="different">ALL CATEGORIES</button></li></center>
-                <li><center><button class="button-quiz" name="quiz_button" type="submit" value="video_games">VIDEO GAMES</button></center></li>
-                <li><center><button class="button-quiz" name="quiz_button" type="submit" value="books">BOOKS</button></center></li>
-                <li><center><button class="button-quiz" name="quiz_button" type="submit" value="computer_science">COMPUTER SCIENCE</button></center></li>
-                <li><center><button class="button-quiz" name="quiz_button" type="submit" value="geography">GEOGRAPHY</button></center></li>
-                <li><center><button class="button-quiz" name="quiz_button" type="submit" value="math">MATHEMATICS</button></center></li>
-                <li><center><button class="button-quiz" name="quiz_button" type="submit" value="music">MUSIC</button></center></li>
-                <li><center><button class="button-quiz" name="quiz_button" type="submit" value="sports">SPORTS</button></center></li>
-            </ul>
-    </form>
+    <div class="main-page">
+        <center><h1>FUCKING PROJECT</h1></center>
+        <form action="quiz" method="post">
+                <ul>
+                    <li><center><button class="button-quiz" name="quiz_button" type="submit" value="different">ALL CATEGORIES</button></center></li>
+                    <li><center><button class="button-quiz" name="quiz_button" type="submit" value="video_games">VIDEO GAMES</button></center></li>
+                    <li><center><button class="button-quiz" name="quiz_button" type="submit" value="books">BOOKS</button></center></li>
+                    <li><center><button class="button-quiz" name="quiz_button" type="submit" value="computer_science">COMPUTER SCIENCE</button></center></li>
+                    <li><center><button class="button-quiz" name="quiz_button" type="submit" value="geography">GEOGRAPHY</button></center></li>
+                    <li><center><button class="button-quiz" name="quiz_button" type="submit" value="math">MATHEMATICS</button></center></li>
+                    <li><center><button class="button-quiz" name="quiz_button" type="submit" value="music">MUSIC</button></center></li>
+                    <li><center><button class="button-quiz" name="quiz_button" type="submit" value="sports">SPORTS</button></center></li>
+                </ul>
+        </form>
 
-    <footer>
-          Copyright &copy; Sebastian Malon 2021
-    </footer>
+
+        <footer>
+            <a href="https://github.com/Sebastvin">Copyright &copy; Sebastian Malon 2022 <i class="fa fa-github"></i></a>
+        </footer>
+    </div>
 </body>
 </html>
