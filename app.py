@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, json
-import main
+from flask import Flask, render_template, request
+import db_functions
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def main_page():
 def quiz():
     category = request.form["quiz_button"]
     print(category)
-    data = list(main.format_questions(main.generate_questions(10, category)))
+    data = list(db_functions.format_questions(db_functions.generate_questions(10, category)))
     if request.method == 'POST':
         return render_template("questions.html", data=data)
 

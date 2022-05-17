@@ -18,7 +18,6 @@ quiz_db = client.quiz
 collections = quiz_db.list_collection_names()
 
 
-
 def get_category(category):
     if "different" == category:
         return quiz_db.questions
@@ -122,8 +121,5 @@ if __name__ == "__main__":
     # docs = convert_json_data("data.json")
     # create_documents(docs, "books")
     # delete_duplicates("books")
-
-
-
 
     # delete_all("video_games")
