@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Quizzzing</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="static/scripts/questions_complete.js"></script>
+</head>
+<body>
+
+
+
+<script>renderQuestion();</script>
+<div class="container">
+    <div class="inside">
+            <div class="row clearfix">
+                <h1  class="lead">Quizzzing</h1>
+            </div>
+
+            <div>
+                <h4 id="numberOfQuestion" class="lead">Question 1 of 10</h4>
+
+                <div class="quest">
+                    <span id="question"></span> <span id="result"></span>
+                </div>
+                <div id="buts" class="buttons">
+                    <ul>
+
+                         <li><button class="button-quiz" role="button" type="button" id="a"></button></li>
+
+                         <li><button class="button-quiz" role="button" type="button" id="b"></button></li>
+
+                         <li><button class="button-quiz" role="button" type="button" id="c"></button></li>
+
+                         <li><button class="button-quiz" role="button" type="button" id="d"></button></li>
+
+                    </ul>
+                </div>
+            <button  style="width:100%;" class="button-quiz" role="button" type="button" id="next">Next</button>
+            </div>
+    </div>
+    <div class="endgame">
+    <h1 id="end"></h1>
+
+    <button onclick="location.href='/'" class="button-quiz" type="button" id="menu" hidden="hidden">Go to menu</button>
+
+
+
+    <button onclick="window.location.reload();" class="button-quiz" type="button" id="reset" hidden="hidden">Try again</button>
+</div>
+</div>
+
+    <footer>
+        <a href="https://github.com/Sebastvin">Copyright &copy; Sebastian Malon 2022 <i class="fa fa-github"></i></a>
+    </footer>
+
+
+
+<script>
+let myQuestions = JSON.parse('{{data | tojson | safe}}');
+let letters = ['a', 'b' ,'c' ,'d']
+
+let questionIndex = 0;
+let result = 0;
+
+
+function renderQuestion() {
+    let show = document.getElementById('question');
+    show.innerHTML = myQuestions[questionIndex][0];
+
+    for (var i=0; i<letters.length; i++) {
+    const but = document.getElementById(letters[i]);
+    but.innerHTML = myQuestions[questionIndex][i+1];
+    }
+
+    var numQuestion = questionIndex +1;
+    document.getElementById("numberOfQuestion").innerText = numQuestion + " of 10";
+    <!--Debug mode, after uncomment line below, beside question shows answer-->
+    <!--  let tmp = document.getElementById("result").innerText = myQuestions[questionIndex][5].toLowerCase();-->
+}
+
+document.getElementById("buts").addEventListener("click", function(e)
+{
+    const tgt = e.target;
+
+    var answer = tgt.id;
+    var clickedButton = document.getElementById(answer.toString());
+    var correctAnswer = myQuestions[questionIndex][5].toLowerCase();
+
+
+    if (answer.toString() === correctAnswer)
+    {
+        result++;
+        clickedButton.style.backgroundColor = 'green';
+    }
+    else
+    {
+        clickedButton.style.backgroundColor = 'red';
+        document.getElementById(correctAnswer).style.backgroundColor = "green";
+    }
+
+
+    document.getElementById('a').disabled = true;
+    document.getElementById('b').disabled = true;
+    document.getElementById('c').disabled = true;
+    document.getElementById('d').disabled = true;
+})
+
+renderQuestion();
+
+
+document.getElementById("next").addEventListener("click", function(e)
+{
+    if (questionIndex <= myQuestions.length -2)
+    {
+        questionIndex++;
+    }
+    else
+    {
+        const boxes = document.getElementsByClassName('inside');
+        for (const box of boxes)
+        {
+            box.style.display = 'none';
+            box.style.visibility = 'hidden';
+        }
+
+        document.getElementById('end').innerText = "Well done! Your score is " + result +" of 10";
+        document.getElementById('next').hidden = true;
+        document.getElementById('reset').hidden = false;
+        document.getElementById('menu').hidden = false;
+
+        }
+
+        document.getElementById('a').disabled = false;
+        document.getElementById('b').disabled = false;
+        document.getElementById('c').disabled = false;
+        document.getElementById('d').disabled = false;
+
+        document.getElementById('a').style.backgroundColor = 'white';
+        document.getElementById('b').style.backgroundColor = 'white';
+        document.getElementById('c').style.backgroundColor = 'white';
+        document.getElementById('d').style.backgroundColor = 'white';
+
+        renderQuestion();
+});
+</script>
+</body>
+</html>
