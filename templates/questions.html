@@ -4,53 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Quizzzing</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">
     <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <script src="static/scripts/questions_complete.js"></script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 </head>
 <body>
 
 
-
-<script>renderQuestion();</script>
-<div class="container">
-    <div class="inside">
-            <div class="row clearfix">
-                <h1  class="lead">Quizzzing</h1>
-            </div>
-
-            <div>
-                <h4 id="numberOfQuestion" class="lead">Question 1 of 10</h4>
-
-                <div class="quest">
-                    <span id="question"></span> <span id="result"></span>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <script>renderQuestion();</script>
+        <div class="main">
+            <div class="inside">
+                <div class="row clearfix">
+                            <h1  class="lead">Quizzzing</h1>
                 </div>
-                <div id="buts" class="buttons">
-                    <ul>
+                    <div>
+                        <h4 id="numberOfQuestion" class="lead">Question 1 of 10</h4>
+                        <div class="quest">
+                            <span id="question"></span> <span id="result"></span>
+                        </div>
+                        <div id="buts" class="buttons">
+                            <ul>
 
-                         <li><button class="button-quiz" role="button" type="button" id="a"></button></li>
+                                 <li><button class="button-quiz" role="button" type="button" id="a"></button></li>
 
-                         <li><button class="button-quiz" role="button" type="button" id="b"></button></li>
+                                 <li><button class="button-quiz" role="button" type="button" id="b"></button></li>
 
-                         <li><button class="button-quiz" role="button" type="button" id="c"></button></li>
+                                 <li><button class="button-quiz" role="button" type="button" id="c"></button></li>
 
-                         <li><button class="button-quiz" role="button" type="button" id="d"></button></li>
+                                 <li><button class="button-quiz" role="button" type="button" id="d"></button></li>
 
-                    </ul>
+                            </ul>
+                        </div>
+                        <button  style="width:100%;" class="button-quiz" role="button" type="button" id="next">Next</button>
+                    </div>
                 </div>
-            <button  style="width:100%;" class="button-quiz" role="button" type="button" id="next">Next</button>
-            </div>
+                    <div class="endgame">
+                        <h1 id="end"></h1>
+                        <button onclick="location.href='/'" class="button-quiz" type="button" id="menu" hidden="hidden">Go to menu</button>
+                        <button onclick="window.location.reload();" class="button-quiz" type="button" id="reset" hidden="hidden">Try again</button>
+                    </div>
+        </div>
     </div>
-    <div class="endgame">
-    <h1 id="end"></h1>
-
-    <button onclick="location.href='/'" class="button-quiz" type="button" id="menu" hidden="hidden">Go to menu</button>
-
-
-
-    <button onclick="window.location.reload();" class="button-quiz" type="button" id="reset" hidden="hidden">Try again</button>
-</div>
 </div>
 
     <footer>

@@ -18,7 +18,7 @@ body {
     width: 100%;
 }
 
-.container {
+.main {
   position: fixed;
   height: 420px;
   width: 700px;
