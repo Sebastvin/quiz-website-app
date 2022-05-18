@@ -1,14 +1,14 @@
-from dotenv import load_dotenv, find_dotenv
+# from dotenv import load_dotenv, find_dotenv
 import os
 import pprint
 from pymongo import MongoClient
 from converter import convert_json_data, clean_data_json
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
+#
+# password = os.environ.get("MONGODB_PWD")
 
-password = os.environ.get("MONGODB_PWD")
-
-connection_string = f"mongodb+srv://x_cherry:{password}@disk0.t55my.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&authSource=admin"
+connection_string = "mongodb+srv://x_cherry:GCQ8MPFozVMML8XO@disk0.t55my.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&authSource=admin"
 
 client = MongoClient(connection_string)
 
