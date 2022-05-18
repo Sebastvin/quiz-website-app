@@ -1,10 +1,15 @@
 from flask import Flask, render_template, request
+import os
 import db_functions
 from pymongo import MongoClient
+from dotenv import load_dotenv, find_dotenv
 
 app = Flask(__name__)
 
-connection_string = "mongodb+srv://x_cherry:GCQ8MPFozVMML8XO@disk0.t55my.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&authSource=admin"
+password = os.environ.get("MONGODB_PWD", "")
+
+
+connection_string = f"mongodb+srv://x_cherry:{password}@disk0.t55my.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&authSource=admin"
 client = MongoClient(connection_string)
 db = client.quiz
 
@@ -19,7 +24,6 @@ def quiz():
     category = request.form["quiz_button"]
     # print(category)
     data = list(db_functions.format_questions(db_functions.generate_questions(10, category, db)))
-    print(data)
     if request.method == 'POST':
         return render_template("questions.html", data=data)
 
