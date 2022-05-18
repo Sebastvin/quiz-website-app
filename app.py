@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 import os
 import db_functions
 from pymongo import MongoClient
-from dotenv import load_dotenv, find_dotenv
 
 app = Flask(__name__)
 
