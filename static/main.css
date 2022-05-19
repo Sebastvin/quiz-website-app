@@ -2,6 +2,8 @@
     margin: 0px;
 }
 
+.hidden { display:none !important }
+
 body {
     font-family: Inter,sans-serif;
     overflow: hidden;
@@ -12,11 +14,6 @@ body {
     margin-top: 30px;
 }
 
-.endgame {
-    text-align: center;
-    margin-top: 160px;
-    width: 100%;
-}
 
 .main {
   position: fixed;
@@ -108,7 +105,6 @@ li {
 }
 
 footer {
-    padding-top: 20px;
     list-style-type: none;
     position: absolute;
     bottom: 0;

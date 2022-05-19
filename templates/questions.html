@@ -8,45 +8,11 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 <body>
 
-
-<!--<div class="album py-5 bg-light">-->
-<!--    <div class="container">-->
-
-<!--        <div class="main">-->
-<!--            <div class="inside">-->
-<!--                <div class="row clearfix">-->
-<!--                </div>-->
-<!--                    <div>-->
-
-<!--                        <div id="buts" class="buttons">-->
-<!--                            <ul>-->
-
-<!--                                 <li><button class="button-quiz" role="button" type="button" id="a"></button></li>-->
-
-<!--                                 <li><button class="button-quiz" role="button" type="button" id="b"></button></li>-->
-
-<!--                                 <li><button class="button-quiz" role="button" type="button" id="c"></button></li>-->
-
-<!--                                 <li><button class="button-quiz" role="button" type="button" id="d"></button></li>-->
-
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                        <center><button  style="width:90%;" class="button-quiz" role="button" type="button" id="next">NEXT QUESTION</button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                    <div class="endgame">-->
-<!--                        <h1 id="end"></h1>-->
-<!--                        <button onclick="location.href='/'" class="button-quiz" type="button" id="menu" hidden="hidden">Go to menu</button>-->
-<!--                        <button onclick="window.location.reload();" class="button-quiz" type="button" id="reset" hidden="hidden">Try again</button>-->
-<!--                    </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 
 <!-- Page content -->
@@ -58,17 +24,17 @@
     <hr>
     <p id="question"></p>
       <div id="buts" class="buttons">
-          <button role="button" type="submit" class="w3-button w3-block w3-dark-grey" id="a">Send</button>
-          <button role="button" type="submit" class="w3-button w3-block w3-dark-grey" id="b">Send</button>
-          <button role="button" type="submit" class="w3-button w3-block w3-dark-grey" id="c">Send</button>
-          <button role="button" type="submit" class="w3-button w3-block w3-dark-grey" id="d">Send</button>
+          <button role="button" type="submit" class="w3-block button-quiz" id="a">Send</button>
+          <button role="button" type="submit" class="w3-block button-quiz" id="b">Send</button>
+          <button role="button" type="submit" class="w3-block button-quiz" id="c">Send</button>
+          <button role="button" type="submit" class="w3-block button-quiz" id="d">Send</button>
       </div>
 
-      <button type="submit" class="w3-button w3-block w3-dark-grey" id="next">NEXT QUESTION</button>
+      <button type="submit" class="w3-block button-quiz" id="next">NEXT QUESTION</button>
       <div class="endgame">
-            <h1 id="end"></h1>
-            <button onclick="location.href='/'" class="button-quiz" type="button" id="menu" hidden="hidden">Go to menu</button>
-            <button onclick="window.location.reload();" class="button-quiz" type="button" id="reset" hidden="hidden">Try again</button>
+            <center><h1 id="end"></h1></center>
+            <button role="button" onclick="location.href='/'" class="w3-block button-quiz" type="button" id="menu" style="display: none">Go to menu</button>
+            <button role="button" onclick="window.location.reload();" class="w3-block button-quiz" type="button" id="reset" style="display: none">Try again</button>
       </div>
 
   </div>
@@ -150,9 +116,13 @@ document.getElementById("next").addEventListener("click", function(e)
         }
 
         document.getElementById('end').innerText = "Well done! Your score is " + result +" of 10";
-        document.getElementById('next').hidden = true;
-        document.getElementById('reset').hidden = false;
-        document.getElementById('menu').hidden = false;
+        document.getElementById('reset').style.display = "block";
+        document.getElementById('menu').style.display = "block";
+        document.getElementById('next').style.display = "none";
+
+        <!--document.getElementById('next').hidden = true;-->
+        <!--document.getElementById('reset').hidden = false;-->
+        <!--document.getElementById('menu').hidden = false;-->
 
         }
 
