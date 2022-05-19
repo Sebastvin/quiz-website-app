@@ -9,77 +9,53 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 
 
-<!--<div class="album py-5 bg-light">-->
-<!--    <div class="container">-->
+<div class="album py-5 bg-light">
+    <div class="container">
+        <script>renderQuestion();</script>
+        <div class="main">
+            <div class="inside">
+                <div class="row clearfix">
+                            <h1  class="lead">Quizzzing</h1>
+                </div>
+                    <div>
+                        <h4 id="numberOfQuestion" class="lead">Question 1 of 10</h4>
+                        <div class="quest">
+                            <span id="question"></span> <span id="result"></span>
+                        </div>
+                        <div id="buts" class="buttons">
+                            <ul>
 
-<!--        <div class="main">-->
-<!--            <div class="inside">-->
-<!--                <div class="row clearfix">-->
-<!--                </div>-->
-<!--                    <div>-->
+                                 <li><button class="button-quiz" role="button" type="button" id="a"></button></li>
 
-<!--                        <div id="buts" class="buttons">-->
-<!--                            <ul>-->
+                                 <li><button class="button-quiz" role="button" type="button" id="b"></button></li>
 
-<!--                                 <li><button class="button-quiz" role="button" type="button" id="a"></button></li>-->
+                                 <li><button class="button-quiz" role="button" type="button" id="c"></button></li>
 
-<!--                                 <li><button class="button-quiz" role="button" type="button" id="b"></button></li>-->
+                                 <li><button class="button-quiz" role="button" type="button" id="d"></button></li>
 
-<!--                                 <li><button class="button-quiz" role="button" type="button" id="c"></button></li>-->
-
-<!--                                 <li><button class="button-quiz" role="button" type="button" id="d"></button></li>-->
-
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                        <center><button  style="width:90%;" class="button-quiz" role="button" type="button" id="next">NEXT QUESTION</button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                    <div class="endgame">-->
-<!--                        <h1 id="end"></h1>-->
-<!--                        <button onclick="location.href='/'" class="button-quiz" type="button" id="menu" hidden="hidden">Go to menu</button>-->
-<!--                        <button onclick="window.location.reload();" class="button-quiz" type="button" id="reset" hidden="hidden">Try again</button>-->
-<!--                    </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-<!-- Page content -->
-<div class="w3-content w3-padding-large w2-margin-top" id="portfolio">
-  <!-- Contact -->
-  <div class="w3-light-grey w3-padding-large w3-padding-28 w3-margin-top" id="contact">
-    <h3 class="w3-center">Quizzzing</h3>
-    <h4 id="numberOfQuestion" class="w3-center">Question 1 of 10</h4>
-    <hr>
-    <p id="question"></p>
-      <div id="buts" class="buttons">
-          <button role="button" type="submit" class="w3-button w3-block w3-dark-grey" id="a">Send</button>
-          <button role="button" type="submit" class="w3-button w3-block w3-dark-grey" id="b">Send</button>
-          <button role="button" type="submit" class="w3-button w3-block w3-dark-grey" id="c">Send</button>
-          <button role="button" type="submit" class="w3-button w3-block w3-dark-grey" id="d">Send</button>
-      </div>
-
-      <button type="submit" class="w3-button w3-block w3-dark-grey" id="next">NEXT QUESTION</button>
-      <div class="endgame">
-            <h1 id="end"></h1>
-            <button onclick="location.href='/'" class="button-quiz" type="button" id="menu" hidden="hidden">Go to menu</button>
-            <button onclick="window.location.reload();" class="button-quiz" type="button" id="reset" hidden="hidden">Try again</button>
-      </div>
-
-  </div>
-
-
-<!-- End page content -->
+                            </ul>
+                        </div>
+                        <center><button  style="width:90%;" class="button-quiz" role="button" type="button" id="next">NEXT QUESTION</button>
+                    </div>
+                </div>
+                    <div class="endgame">
+                        <h1 id="end"></h1>
+                        <button onclick="location.href='/'" class="button-quiz" type="button" id="menu" hidden="hidden">Go to menu</button>
+                        <button onclick="window.location.reload();" class="button-quiz" type="button" id="reset" hidden="hidden">Try again</button>
+                    </div>
+        </div>
+    </div>
 </div>
 
-<footer>
-    <a href="https://github.com/Sebastvin">Copyright &copy; Sebastian Malon 2022 <i class="fa fa-github"></i></a>
-</footer>
+    <footer>
+        <a href="https://github.com/Sebastvin">Copyright &copy; Sebastian Malon 2022 <i class="fa fa-github"></i></a>
+    </footer>
+
+
 
 <script>
 let myQuestions = JSON.parse('{{data | tojson | safe}}');
