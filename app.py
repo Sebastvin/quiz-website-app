@@ -21,7 +21,6 @@ def main_page():
 @app.route("/quiz", methods=['POST'])
 def quiz():
     category = request.form["quiz_button"]
-    # print(category)
     data = list(db_functions.format_questions(db_functions.generate_questions(10, category, db)))
     if request.method == 'POST':
         return render_template("questions.html", data=data)

@@ -1,24 +1,8 @@
-# from dotenv import load_dotenv, find_dotenv
-# import os
-# import pprint
-# from pymongo import MongoClient
-from converter import convert_json_data, clean_data_json
-
-# load_dotenv(find_dotenv())
-#
-# password = os.environ.get("MONGODB_PWD")
-
-# connection_string = "mongodb+srv://x_cherry:GCQ8MPFozVMML8XO@disk0.t55my.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&authSource=admin"
-#
-# client = MongoClient(connection_string)
-
-# printer = pprint.PrettyPrinter()
-#
-# quiz_db = client.quiz
-# collections = quiz_db.list_collection_names()
+from converter_to_json import convert_json_data, clean_data_json
 
 
 def get_category(category, db):
+    """Returns a database of questions from the selected category"""
     if "different" == category:
         return db.questions
 
@@ -44,23 +28,31 @@ def get_category(category, db):
         return db.computer_science
 
 
-# def count_elements():
-#     return quiz_different.count_documents(filter={})
-#
-#
-# def project_columns():
-#     columns = {"_id": 0, "question": 1, "A": 2, "B": 3, "C": 4, "D": 5, "answer": 6}
-#     people = quiz_different.find({}, columns)
-#     for person in people:
-#         print(list(person.values()))
+def count_elements(db, category):
+    """Count all records from specific category"""
+    data = get_category(category, db)
+    return data.count_documents(filter={})
+
+
+def project_columns(db):
+    """Shows all specific data from category in console"""
+    data = get_category(category, db)
+    columns = {"_id": 0, "question": 1, "A": 2, "B": 3, "C": 4, "D": 5, "answer": 6}
+    people = data.find({}, columns)
+    for person in people:
+        print(list(person.values()))
 
 
 def generate_questions(number_questions, category, db):
+    """Randomly draws a given number (number_questions) of questions from the indicated category from database"""
     data = get_category(category, db)
     return list(data.aggregate([{"$sample": {"size": number_questions}}]))
 
 
 def format_questions(data):
+    """Format json data to the required format"""
+    """Data are downloaded from https://opentdb.com/api_config.php"""
+
     question, type_a = [], []
     type_b, type_c = [], []
     type_d, answer = [], []
@@ -77,11 +69,13 @@ def format_questions(data):
 
 
 def create_documents(docs, category, db):
+    """Add to specific database news records"""
     tmp = get_category(category, db)
     tmp.insert_many(docs)
 
 
 def delete_duplicates(category, db):
+    """Delete duplicates by question in specific category"""
     coll = get_category(category, db)
     cursor = coll.aggregate(
         [
@@ -106,10 +100,12 @@ def delete_duplicates(category, db):
 
 
 def delete_all(category, db):
-    data = get_category(category, db)
+    """--------------WARNING----------------"""
+    """Delete all database specific category"""
 
-    # person_collection.delete_one({"_id": _id})
+    data = get_category(category, db)
     data.delete_many({})
 
-
+    """Delete one element by specific key, argument"""
+    # person_collection.delete_one({"_id": _id})
 

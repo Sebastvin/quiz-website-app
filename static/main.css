@@ -2,18 +2,6 @@
     margin: 0px;
 }
 
-.hidden
-{
-    display:none !important
-}
-
-.endgame
-{
-    color: green;
-    text-align: center;
-    font-weight: bold;
-}
-
 p
 {
     font-weight: bold;
@@ -23,32 +11,6 @@ body {
     font-family: Inter,sans-serif;
     overflow: hidden;
 }
-
-.main-page
-{
-    margin-top: 30px;
-}
-
-.main {
-  position: fixed;
-  height: 420px;
-  width: 40%;
-  top: 20%;
-  left: 35%;
-  margin-top: -20px;
-  margin-left: -100px;
-  border: 3px solid green;
-}
-
-.lead {
-    text-align: center;
-}
-
-.inside {
-    text-align: left;
-    margin: 1rem;
-}
-
 
 ul {
     padding: 0;
@@ -61,15 +23,18 @@ li {
     margin: 1rem;
 }
 
-
-.quest {
-  font-size: 18px;
-  font-weight: 200;
-  height: 38px;
+.hidden
+{
+    display:none !important
 }
 
+.endgame
+{
+    color: green;
+    text-align: center;
+    font-weight: bold;
+}
 
-/* CSS */
 .button-quiz {
   align-items: center;
   background-color: #fff;
