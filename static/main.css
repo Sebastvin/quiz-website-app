@@ -2,7 +2,22 @@
     margin: 0px;
 }
 
-.hidden { display:none !important }
+.hidden
+{
+    display:none !important
+}
+
+.endgame
+{
+    color: green;
+    text-align: center;
+    font-weight: bold;
+}
+
+p
+{
+    font-weight: bold;
+}
 
 body {
     font-family: Inter,sans-serif;
@@ -13,7 +28,6 @@ body {
 {
     margin-top: 30px;
 }
-
 
 .main {
   position: fixed;

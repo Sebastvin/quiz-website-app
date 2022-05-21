@@ -19,22 +19,28 @@
 <div class="w3-content w3-padding-large w2-margin-top" id="portfolio">
   <!-- Contact -->
   <div class="w3-light-grey w3-padding-large w3-padding-28 w3-margin-top" id="contact">
-    <h3 class="w3-center">Quizzzing</h3>
-    <h4 id="numberOfQuestion" class="w3-center">Question 1 of 10</h4>
+    <h3 class="w3-center"><b>Quizzzing</b></h3>
+    <h4 id="numberOfQuestions" class="w3-center">Question 1 of 10</h4>
     <hr>
-    <p id="question"></p>
-      <div id="buts" class="buttons">
-          <button role="button" type="submit" class="w3-block button-quiz" id="a">Send</button>
-          <button role="button" type="submit" class="w3-block button-quiz" id="b">Send</button>
-          <button role="button" type="submit" class="w3-block button-quiz" id="c">Send</button>
-          <button role="button" type="submit" class="w3-block button-quiz" id="d">Send</button>
-      </div>
+     <div class="buttons">
+        <div id="buts">
+              <ul>
+                  <li><p id="question"></p></li>
+                  <li><button role="button" type="submit" class="w3-block button-quiz" id="a">Send</button></li>
+                  <li><button role="button" type="submit" class="w3-block button-quiz" id="b">Send</button></li>
+                  <li><button role="button" type="submit" class="w3-block button-quiz" id="c">Send</button></li>
+                  <li><button role="button" type="submit" class="w3-block button-quiz" id="d">Send</button></li>
+              </ul>
+          </div>
 
-      <button type="submit" class="w3-block button-quiz" id="next">NEXT QUESTION</button>
+          <button type="submit" class="w3-block button-quiz" id="next">NEXT QUESTION</button>
+     </div>
       <div class="endgame">
-            <center><h1 id="end"></h1></center>
-            <button role="button" onclick="location.href='/'" class="w3-block button-quiz" type="button" id="menu" style="display: none">Go to menu</button>
-            <button role="button" onclick="window.location.reload();" class="w3-block button-quiz" type="button" id="reset" style="display: none">Try again</button>
+            <h1 id="end"></h1>
+           <ul>
+               <li><button role="button" onclick="location.href='/'" class="w3-block button-quiz" type="button" id="menu" style="display: none">Go to menu</button></li>
+               <li><button role="button" onclick="window.location.reload();" class="w3-block button-quiz" type="button" id="reset" style="display: none">Try again</button></li>
+           </ul>
       </div>
 
   </div>
@@ -56,6 +62,7 @@ let result = 0;
 
 
 function renderQuestion() {
+    document.getElementById('next').style.display = "none";
     let show = document.getElementById('question');
     show.innerHTML = myQuestions[questionIndex][0];
 
@@ -65,7 +72,7 @@ function renderQuestion() {
     }
 
     var numQuestion = questionIndex +1;
-    document.getElementById("numberOfQuestion").innerText = numQuestion + " of 10";
+    document.getElementById("numberOfQuestions").innerText = numQuestion + " of 10";
     <!--Debug mode, after uncomment line below, beside question shows answer-->
     <!--  let tmp = document.getElementById("result").innerText = myQuestions[questionIndex][5].toLowerCase();-->
 }
@@ -90,6 +97,11 @@ document.getElementById("buts").addEventListener("click", function(e)
         document.getElementById(correctAnswer).style.backgroundColor = "green";
     }
 
+    if (questionIndex <= myQuestions.length -1)
+    {
+        document.getElementById('next').style.display = "block";
+    }
+
 
     document.getElementById('a').disabled = true;
     document.getElementById('b').disabled = true;
@@ -102,39 +114,38 @@ renderQuestion();
 
 document.getElementById("next").addEventListener("click", function(e)
 {
-    if (questionIndex <= myQuestions.length -2)
+    if (questionIndex <= myQuestions.length - 2)
     {
         questionIndex++;
-    }
-    else
-    {
-        const boxes = document.getElementsByClassName('inside');
-        for (const box of boxes)
-        {
-            box.style.display = 'none';
-            box.style.visibility = 'hidden';
-        }
-
-        document.getElementById('end').innerText = "Well done! Your score is " + result +" of 10";
-        document.getElementById('reset').style.display = "block";
-        document.getElementById('menu').style.display = "block";
-        document.getElementById('next').style.display = "none";
-
-        <!--document.getElementById('next').hidden = true;-->
-        <!--document.getElementById('reset').hidden = false;-->
-        <!--document.getElementById('menu').hidden = false;-->
-
-        }
 
         document.getElementById('a').disabled = false;
         document.getElementById('b').disabled = false;
         document.getElementById('c').disabled = false;
         document.getElementById('d').disabled = false;
 
+
         document.getElementById('a').style.backgroundColor = 'white';
         document.getElementById('b').style.backgroundColor = 'white';
         document.getElementById('c').style.backgroundColor = 'white';
         document.getElementById('d').style.backgroundColor = 'white';
+    }
+    else
+    {
+        const boxes = document.getElementsByClassName("buttons");
+        for (const box of boxes)
+        {
+            box.style.display = "none";
+            box.style.visibility = "hidden";
+        }
+
+
+        document.getElementById('end').innerText = "Well done! Your score is " + result + " of 10";
+        document.getElementById('reset').style.display = "block";
+        document.getElementById('menu').style.display = "block";
+        document.getElementById('next').style.display = "none";
+    }
+
+
 
         renderQuestion();
 });
