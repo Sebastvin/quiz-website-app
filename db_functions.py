@@ -34,7 +34,7 @@ def count_elements(db, category):
     return data.count_documents(filter={})
 
 
-def project_columns(db):
+def project_columns(db, category):
     """Shows all specific data from category in console"""
     data = get_category(category, db)
     columns = {"_id": 0, "question": 1, "A": 2, "B": 3, "C": 4, "D": 5, "answer": 6}
