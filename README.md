@@ -7,8 +7,9 @@ The web application was written in python with using nosql mongodb database, htm
 [<img align="left" alt="p3" width="26px" style="margin-left:.6em" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/mongodb.svg"/>][mongodb]
 [<img align="left" alt="p4" width="26px" style="margin-left:.6em" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/heroku.svg"/>][heroku]
 
+<br />
 
-## Note
+# Note
 The site is hosted on herokuapp platform, if no one has visited the site for a long time it goes into a "sleep state" and may take longer to load.
 <br />
 Link to website: https://quizzzing.herokuapp.com
@@ -31,4 +32,4 @@ The quiz questions are from here:
 
 Screen from web-app:
 
-<img src="https://raw.githubusercontent.com/Sebastvin/quiz-website-app/static/main.png" alt="quiz game"/>
+<img src="https://github.com/Sebastvin/quiz-website-app/blob/main/static/main.png" alt="quiz game"/>
